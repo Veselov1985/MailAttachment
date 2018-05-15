@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+    <!--Bootstrap-->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <!-- bootstrap-select CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.4/css/bootstrap-select.min.css">
+    <!-- bootstrap-select JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.4/js/bootstrap-select.min.js"></script>
+
+    <script src="scripts/mailattachment2.js"></script>
+
+    <!--notifications -->
+    <script src="scripts/notification/spop.min.js"></script>
+    <link rel="stylesheet" href="styles/production.css">
+    <link rel="stylesheet" href="styles/production-plugins.min.css">
+
+    <link rel="stylesheet" href="styles/pe-icon-7-stroke.css" />
+    <link rel="stylesheet" href="styles/7-stroke-helper.css" />
+    <link rel="stylesheet" href="styles/spop.min.css" />
+    <link rel="stylesheet" href="styles/style.css" />
+
+</head>
+
+<body>
+
+    <section class="container-fluid bg-color-white">
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="clearfix">
+                    <img src="pseudo_logo.png" alt="Pseudo Logo" class="logo_big img-responsive pull-right">
+                </div>
+            </div>
+        </div>
+        <header class="row">
+            <div class="col-xs-12">
+                <h4 class="border-bottom">Administration
+                </h4>
+            </div>
+        </header>
+
+        <div class="form-horizontal">
+            <div class="form-group mt-10">
+                <label class="col-md-3 control-label">Connection string</label>
+                <div class="col-md-8">
+                    <input id="ipt_adm_connectionstring" type="text" class="form-control">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-md-3 control-label">Query</label>
+                <div class="col-md-8">
+                    <input id="ipt_adm_query" type="text" class="form-control">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="container-fluid bg-color-white">
+        <header class="row">
+            <div class="col-xs-12">
+                <h4 class="border-bottom">Creditors
+                </h4>
+            </div>
+        </header>
+
+        <div class="form-horizontal">
+            <div class="form-group mt-10">
+                <label class="col-md-3 control-label">Connection string</label>
+                <div class="col-md-8">
+                    <input id="ipt_creditor_connectionstring" type="text" class="form-control">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-md-3 control-label">Query</label>
+                <div class="col-md-8">
+                    <input id="ipt_creditor_query" type="text" class="form-control">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="container-fluid bg-color-white">
+        <div class="row margin-bottom-15">
+            <div class="col-xs-12">
+                <button id="btn_save" class="btn btn-primary pull-right">Save</button>
+            </div>
+        </div>
+    </section>
+
+</body>
+
+</html>

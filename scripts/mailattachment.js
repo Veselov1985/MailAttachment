@@ -104,7 +104,21 @@ ma1.handlers = {
                 "select": true,
                 "responsive": true,
                 "data": aaData,
-                "columnDefs": [{
+                "columnDefs": [
+                    {
+                        'targets': 1,
+                        'searchable': false,
+                        'orderable': false,
+                        'render': function(data, type, full, meta) {
+                            var data=data.split(';');
+                            var str='';
+                            data.forEach(function(val,i){
+                                str+=val+'<br>'
+                            })
+                            return str;
+                        }
+                    },
+                    {
                     'targets': 2,
                     'searchable': false,
                     'orderable': false,
@@ -188,7 +202,7 @@ ma1.handlers = {
 
             } else {
                 ma1.helpfunc.setTdtext(el0, el0data);
-                ma1.helpfunc.setTdtext(el1, el1data);
+                ma1.helpfunc.setTdHTML(el1, el1data);
                 ma1.css.onDisplay($(res[0]).find('.group-1'));
                 ma1.css.ofDisplay($(res[0]).find('.group-2'));
             }
@@ -210,7 +224,7 @@ ma1.handlers = {
             } else {
                 ma1.elements.datatables.userfields.data.aaData.push([el0data, el1data]);
                 ma1.helpfunc.setTdtext(el0, el0data);
-                ma1.helpfunc.setTdtext(el1, el1data);
+                ma1.helpfunc.setTdHTML(el1, el1data);
                 ma1.css.onDisplay($(res[0]).find('.group-1'));
                 ma1.css.ofDisplay($(res[0]).find('.group-2'));
                 ma1.elements.datatables.userfields.state = true;
@@ -254,13 +268,20 @@ ma1.helpfunc = {
         $el1.empty();
         $el0.append(html(data[0]));
         $el1.append(html(data[1]));
-
     },
     getTdtext: function(el) {
         return $(el).text();
     },
     setTdtext: function(el, value) {
         $(el).text(value);
+    },
+     setTdHTML:function(el,html){
+        var _html,strArr;
+        strArr=html.trim().split(';');
+        strArr.forEach(function(val,i){
+       _html+=val+'<br>'
+   })
+        $(el).html(_html);
     },
     getInputValue: function(input) {
         return $(input).val();

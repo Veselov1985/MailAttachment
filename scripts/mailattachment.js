@@ -294,14 +294,7 @@ ma1.helpfunc = {
         arr.forEach(function(val, i) {
             str += val + '<br>';
         });
-
         $(el).html(str);
-
-
-
-
-
-
     },
     getInputValue: function(input) {
         return $(input).val();

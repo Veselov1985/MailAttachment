@@ -104,34 +104,41 @@ ma1.handlers = {
                 "select": true,
                 "responsive": true,
                 "data": aaData,
-                "columnDefs": [
-                    {
+                "columnDefs": [{
                         'targets': 1,
                         'searchable': false,
                         'orderable': false,
                         'render': function(data, type, full, meta) {
-                            var data=data.split(';');
-                            var str='';
-                            data.forEach(function(val,i){
-                                str+=val+'<br>'
-                            })
+                            if (data.indexOf('style="width:100%"') != -1) return data;
+                            var arr = [],
+                                str = "";
+                            var res = data.split(';');
+                            res.forEach(function(val, i) {
+                                val.trim().split(' ').forEach(function(val) {
+                                    arr.push(val);
+                                });
+                            });
+                            arr.forEach(function(val, i) {
+                                str += val + '<br>';
+                            });
                             return str;
                         }
                     },
                     {
-                    'targets': 2,
-                    'searchable': false,
-                    'orderable': false,
-                    'className': 'dt-body-center',
-                    'render': function(data, type, full, meta) {
-                        return '<div class="row"><div class="col-md-8 col-md-offset-4"><div class="btn-group group-1"><a id="" class="btn btn-default edit-row btn-sm"><span class="pe-7s-pen pe-1_5x " aria-hidden="true"></span></a><a id="" class="btn btn-default delete-row btn-sm" style="margin-left:5px"><span class="pe-7s-trash pe-1_5x " aria-hidden="true"></span></a></div>     <div class="btn-group group-2" style="display:none"><a id="" class="btn btn-default ok-row btn-sm"><span class="pe-7s-check pe-1_5x" aria-hidden="true"></span></a><a id="" class="btn btn-default cancel-row btn-sm" style="margin-left:5px"><span class="pe-7s-close-circle pe-1_5x " aria-hidden="true"></span></a></div>   </div></div>';
+                        'targets': 2,
+                        'searchable': false,
+                        'orderable': false,
+                        'className': 'dt-body-center',
+                        'render': function(data, type, full, meta) {
+                            return '<div class="row"><div class="col-md-8 col-md-offset-4"><div class="btn-group group-1"><a id="" class="btn btn-primary edit-row btn-sm"><span class="pe-7s-pen pe-1_5x " aria-hidden="true"></span></a><a id="" class="btn btn-danger delete-row btn-sm" style="margin-left:5px"><span class="pe-7s-trash pe-1_5x " aria-hidden="true"></span></a></div>     <div class="btn-group group-2" style="display:none"><a id="" class="btn btn-primary ok-row btn-sm"><span class="pe-7s-check pe-1_5x" aria-hidden="true"></span></a><a id="" class="btn btn-danger cancel-row btn-sm" style="margin-left:5px"><span class="pe-7s-close-circle pe-1_5x " aria-hidden="true"></span></a></div></div></div>';
+                        }
                     }
-                }],
+                ],
                 "columns": table.columns,
                 "dom": "<'row'<'col-md-4'><'col-md-8'B>>t<'clear'p>",
                 "buttons": [{
                     text: "<span class='pe-7s-plus pe-va font-bold pe-1_2x'></span>&nbsp;Add new field",
-                    className: "btn btn-default btn-sm dt-btn dt-btn-m-b-10",
+                    className: "btn btn-primary btn-sm dt-btn dt-btn-m-b-10",
                     action: function(e, dt, node, config) {
                         ma1.handlers.datatables.addRow(table);
                     }
@@ -236,8 +243,8 @@ ma1.handlers = {
                 return;
             }
             table.dt.row.add([
-                '<div class="input-group" style="width:100%"><input type="text" class="form-control"  data-prev="0" value="0" aria-label="..."></div></div>',
-                '<div class="input-group" style="width:100%"><input type="text" class="form-control"  data-prev="0" value="0" aria-label="..."></div></div>',
+                '<div class="input-group" style="width:100%"><input type="text" class="form-control"  data-prev="0" value="0" aria-label="..."></div>',
+                '<div class="input-group" style="width:100%"><input type="text" class="form-control"  data-prev="0" value="0" aria-label="..."></div>',
             ]).draw();
             ma1.handlers.datatables.setEvents(table);
             ma1.elements.datatables.userfields.state = false;
@@ -263,7 +270,7 @@ ma1.helpfunc = {
     createInputField: function(el, data) {
         var $el0 = $(el[0]);
         var $el1 = $(el[1]);
-        var html = function(data) { return '<div class="input-group" style="width:100%"><input type="text" class="form-control"  data-prev="' + data + '" value="' + data + '" aria-label="..."></div></div>'; };
+        var html = function(data) { return '<div class="input-group" style="width:100%"><input type="text" class="form-control"  data-prev="' + data + '" value="' + data + '" aria-label="..."></div>'; };
         $el0.empty();
         $el1.empty();
         $el0.append(html(data[0]));
@@ -275,13 +282,26 @@ ma1.helpfunc = {
     setTdtext: function(el, value) {
         $(el).text(value);
     },
-     setTdHTML:function(el,html){
-        var _html,strArr;
-        strArr=html.trim().split(';');
-        strArr.forEach(function(val,i){
-       _html+=val+'<br>'
-   })
-        $(el).html(_html);
+    setTdHTML: function(el, html) {
+        var arr = [],
+            str = "";
+        var res = html.split(';');
+        res.forEach(function(val, i) {
+            val.trim().split(' ').forEach(function(val) {
+                arr.push(val);
+            });
+        });
+        arr.forEach(function(val, i) {
+            str += val + '<br>';
+        });
+
+        $(el).html(str);
+
+
+
+
+
+
     },
     getInputValue: function(input) {
         return $(input).val();

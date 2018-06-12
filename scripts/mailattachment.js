@@ -33,7 +33,7 @@ ma1.elements = {
             object: {},
             columns: [{ title: "Name" }, { title: "Value" }],
             dt: {},
-            data: { origin: {}, aaData: [], ID: '', name: '', admininstrationID: '' },
+            data: { origin: {}, aaData: [], ID: '', name: '', administrationID: '' },
             clean: function() {},
             init: function() {},
             addRow: function() {},
@@ -453,7 +453,7 @@ ma1.setdata = {
         ma1.elements.datatables.userfields.data.ID = data.ID;
         ma1.elements.datatables.userfields.data.name = data.name;
 
-        ma1.elements.datatables.userfields.data.admininstrationID = data.admininstrationID;
+        ma1.elements.datatables.userfields.data.administrationID = data.administrationID;
         // set data in document
         ma1.handlers.checkbox.setValue(ma1.elements.checkboxes.addattachment.object, data.addAttachment);
         ma1.handlers.dropdown.setSelectedValue(ma1.elements.dropdowns.maindocument.object, data.mainDocRule);
@@ -487,7 +487,7 @@ ma1.actions = {
         };
         var data = {
             ID: ma1.elements.datatables.userfields.data.ID,
-            admininstrationID: ma1.elements.datatables.userfields.data.admininstrationID,
+            administrationID: ma1.elements.datatables.userfields.data.administrationID,
             udfList: ma1.helpfunc.createResAddata(ma1.elements.datatables.userfields.data.aaData),
             addAttachment: ma1.handlers.checkbox.getValue(ma1.elements.checkboxes.addattachment.object),
             mainDocRule: +ma1.handlers.dropdown.getSelectedValue(ma1.elements.dropdowns.maindocument.object),
@@ -559,7 +559,7 @@ ma1.clean = {
         ma1.elements.datatables.userfields.data.ID = '';
         ma1.elements.datatables.userfields.data.name = '';
         ma1.elements.datatables.userfields.data.aaData = [];
-        ma1.elements.datatables.userfields.data.admininstrationID = '';
+        ma1.elements.datatables.userfields.data.administrationID = '';
     },
     table: function() {
         ma1.handlers.datatables.clean(ma1.elements.datatables.userfields);
